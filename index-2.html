@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tamer Oto Ön Muayene & Fren Servisi, Küsget Sanayi, Şehitkamil / Gaziantep. Ön muayene, fren testi, fren kaliper tamiri, fren tamiri.">
+<title>Tamer Oto Fren Servisi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: koyu çelik bir üst bant (isim + fren diski), altında açık zeminde işler, randevu formu ve iletişim. */
+:root {
+  --bg: #edf0f2;
+  --surface: #ffffff;
+  --ink: #121c26;
+  --muted: #4d5b69;
+  --line: #c9d1d8;
+  --accent: #f2b705;
+  --accent-ink: #121c26;
+  --steel: #1b2733;
+  --steel-ink: #f1f4f6;
+  --steel-muted: #a9b6c2;
+  --disc: #c3ccd4;
+  --disc-edge: #8f9ba6;
+  --link: #0b5cad;
+  --focus: #0b5cad;
+  --ok: #17703a;
+  --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e141a;
+    --surface: #16202a;
+    --ink: #e9eef2;
+    --muted: #9aa8b5;
+    --line: #2a3744;
+    --steel: #080c10;
+    --disc: #3a4752;
+    --disc-edge: #55636f;
+    --link: #6db3f2;
+    --focus: #6db3f2;
+    --ok: #62c68a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e141a;
+  --surface: #16202a;
+  --ink: #e9eef2;
+  --muted: #9aa8b5;
+  --line: #2a3744;
+  --steel: #080c10;
+  --disc: #3a4752;
+  --disc-edge: #55636f;
+  --link: #6db3f2;
+  --focus: #6db3f2;
+  --ok: #62c68a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.wrap {
+  max-width: 1040px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.02; text-transform: uppercase; }
+
+/* Üst bant */
+.band { background: var(--steel); color: var(--steel-ink); }
+.band .wrap { padding-block: 28px 36px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 24px; align-items: center; }
+.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel-muted); margin: 0 0 14px; }
+.band h1 { font-size: clamp(52px, 12vw, 104px); font-weight: 800; letter-spacing: 0.005em; }
+.band h1 span { display: block; color: var(--accent); font-size: 0.5em; font-weight: 700; margin-top: 8px; letter-spacing: 0.02em; }
+.lead { color: var(--steel-muted); max-width: 34ch; margin: 18px 0 24px; font-size: 18px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 10px 20px; border-radius: 4px; border: 2px solid transparent;
+  font: 700 18px/1 var(--display); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer;
+}
+.btn-main { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: transparent; color: var(--steel-ink); border-color: var(--steel-muted); }
+.btn-plain { background: var(--surface); color: var(--ink); border-color: var(--line); }
+.disc { width: 100%; max-width: 300px; justify-self: end; height: auto; }
+.disc-spin { transform-origin: 150px 150px; animation: spin 40s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .disc-spin { animation: none; } }
+
+/* Bölümler */
+section { padding-block: 44px 8px; }
+h2 { font-size: clamp(32px, 6vw, 46px); font-weight: 800; margin-bottom: 20px; }
+.sub { color: var(--muted); margin: -8px 0 22px; max-width: 52ch; }
+
+/* İşler */
+.jobs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.jobs li { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; }
+.jobs h3 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.jobs p { margin: 0; color: var(--muted); }
+.tick { display: inline-block; width: 28px; height: 6px; background: var(--accent); margin-bottom: 14px; border-radius: 1px; }
+
+/* Randevu */
+.form-box { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 22px; display: grid; gap: 16px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+label { font-weight: 600; font-size: 15px; }
+label small { font-weight: 400; color: var(--muted); }
+input, select, textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--bg);
+  border: 1.5px solid var(--line); border-radius: 4px; padding: 12px;
+}
+textarea { min-height: 96px; resize: vertical; }
+.hint { color: var(--muted); font-size: 15px; margin: 0; }
+.result { border: 2px solid var(--accent); border-radius: 6px; padding: 18px; display: grid; gap: 12px; }
+.result pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 500 14px/1.5 var(--mono); background: var(--bg); padding: 12px; border-radius: 4px; user-select: all; }
+.result p { margin: 0; }
+.warn { font-weight: 600; }
+.err { color: #b3261e; font-weight: 600; margin: 0; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .err { color: #ff8a80; } }
+:root[data-theme="dark"] .err { color: #ff8a80; }
+
+/* İletişim */
+.contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; min-width: 0; }
+.card h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; color: var(--muted); letter-spacing: 0.04em; }
+.phone { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-block: 8px; border-top: 1px solid var(--line); }
+.phone:first-of-type { border-top: 0; padding-top: 0; }
+.num { font: 600 22px/1.2 var(--mono); flex: 1 1 auto; user-select: all; }
+.mini { min-height: 40px; padding: 8px 14px; font-size: 16px; }
+.hours { font: 600 34px/1.1 var(--mono); margin: 0 0 6px; }
+.addr { font-size: 19px; margin: 0 0 14px; }
+
+footer { padding-block: 36px 40px; color: var(--muted); font-size: 15px; }
+footer .wrap { border-top: 1px solid var(--line); padding-top: 18px; }
+
+@media (max-width: 640px) {
+  .band .wrap { grid-template-columns: minmax(0, 1fr); }
+  .disc { max-width: 190px; justify-self: start; order: -1; }
+  .jobs, .row, .contact { grid-template-columns: minmax(0, 1fr); }
+  .btn { flex: 1 1 100%; }
+  .phone .btn { flex: 0 0 auto; }
+}
+</style>
+
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Küsget Sanayi · Şehitkamil · Gaziantep</p>
+      <h1>Tamer Oto <span>Ön Muayene &amp; Fren Servisi</span></h1>
+      <p class="lead">Ön muayene, fren testi ve her türlü otomobilin fren tamiri. Önce randevu alın, sıra beklemeyin.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="#randevu">Randevu al</a>
+        <a class="btn btn-ghost" href="#iletisim">Adres ve telefon</a>
+      </div>
+    </div>
+    <svg class="disc" viewBox="0 0 300 300" role="img" aria-label="Fren diski ve sarı kaliper">
+      <g class="disc-spin">
+        <circle cx="150" cy="150" r="118" style="fill: var(--disc)"/>
+        <circle cx="150" cy="150" r="104" style="fill: none; stroke: var(--disc-edge); stroke-width: 1.5"/>
+        <circle cx="150" cy="150" r="48" style="fill: none; stroke: var(--disc-edge); stroke-width: 1.5"/>
+        <g style="fill: var(--steel)">
+          <circle cx="150" cy="82" r="7"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(30 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(60 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(90 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(120 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(150 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(180 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(210 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(240 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(270 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(300 150 150)"/>
+          <circle cx="150" cy="82" r="7" transform="rotate(330 150 150)"/>
+        </g>
+        <circle cx="150" cy="150" r="36" style="fill: var(--steel); stroke: var(--disc-edge); stroke-width: 2"/>
+        <g style="fill: var(--disc-edge)">
+          <circle cx="150" cy="132" r="4"/>
+          <circle cx="150" cy="132" r="4" transform="rotate(72 150 150)"/>
+          <circle cx="150" cy="132" r="4" transform="rotate(144 150 150)"/>
+          <circle cx="150" cy="132" r="4" transform="rotate(216 150 150)"/>
+          <circle cx="150" cy="132" r="4" transform="rotate(288 150 150)"/>
+        </g>
+      </g>
+      <path d="M216.9 70.3 A104 104 0 0 1 252.4 168.1" style="fill: none; stroke: var(--accent); stroke-width: 34; stroke-linecap: round"/>
+    </svg>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="isler">
+    <h2>Yaptığımız işler</h2>
+    <ul class="jobs">
+      <li><span class="tick"></span><h3>Ön muayene</h3><p>Araç muayeneye girmeden önce kontrol edilir, eksikler önceden görülür.</p></li>
+      <li><span class="tick"></span><h3>Fren testi</h3><p>Frenlerin durumu test edilir, sonuç size anlatılır.</p></li>
+      <li><span class="tick"></span><h3>Fren kaliper tamiri</h3><p>Kaliper sorunları yerinde tamir edilir.</p></li>
+      <li><span class="tick"></span><h3>Fren tamiri</h3><p>Her türlü otomobilin fren sistemi tamir edilir.</p></li>
+    </ul>
+  </section>
+
+  <section id="randevu">
+    <h2>Randevu al</h2>
+    <p class="sub">Aracınızın bilgilerini yazın. Hazır mesaj WhatsApp'ta açılır, siz de gönder'e basın.</p>
+    <form class="form-box" id="randevuForm" novalidate>
+      <div class="row">
+        <div class="field">
+          <label for="ad">Adınız</label>
+          <input id="ad" name="ad" type="text" autocomplete="name" placeholder="Ad Soyad">
+        </div>
+        <div class="field">
+          <label for="tel">Telefonunuz</label>
+          <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="marka">Araç markası</label>
+          <input id="marka" name="marka" type="text" placeholder="Örnek: Volkswagen" required>
+        </div>
+        <div class="field">
+          <label for="model">Model ve yıl</label>
+          <input id="model" name="model" type="text" placeholder="Örnek: Passat 2014" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="is">Ne için geliyorsunuz?</label>
+        <select id="is" name="is">
+          <option>Ön muayene</option>
+          <option>Fren testi</option>
+          <option>Fren kaliper tamiri</option>
+          <option>Fren tamiri</option>
+          <option>Diğer</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sikayet">Şikayetiniz <small>(varsa)</small></label>
+        <textarea id="sikayet" name="sikayet" placeholder="Örnek: Fren yaparken direksiyon titriyor, pedal yumuşak."></textarea>
+      </div>
+      <div class="field">
+        <label for="zaman">Hangi gün ve saat uygun? <small>(isteğe bağlı)</small></label>
+        <input id="zaman" name="zaman" type="text" placeholder="Örnek: Yarın öğleden sonra">
+      </div>
+      <p class="err" id="hata" hidden>Marka ve model alanlarını doldurun.</p>
+      <button class="btn btn-main" type="submit">Mesajı hazırla</button>
+      <p class="hint">Randevu, mesajı WhatsApp'tan gönderdiğinizde bize ulaşır. Hazırlamak tek başına randevu almaz.</p>
+    </form>
+
+    <div class="result" id="sonuc" hidden aria-live="polite">
+      <p class="warn">Mesaj hazır. WhatsApp'ta açıp gönder'e basın.</p>
+      <pre id="mesaj"></pre>
+      <div class="actions">
+        <a class="btn btn-main" id="wa" href="#randevu" target="_blank" rel="noopener">WhatsApp'ta aç</a>
+        <button class="btn btn-plain" type="button" id="kopyala">Mesajı kopyala</button>
+      </div>
+      <p class="hint" id="kopyaNot" hidden></p>
+    </div>
+  </section>
+
+  <section id="iletisim">
+    <h2>İletişim</h2>
+    <div class="contact">
+      <div class="card">
+        <h3>Telefon</h3>
+        <div class="phone">
+          <span class="num">0544 483 33 02</span>
+          <a class="btn btn-main mini" href="tel:+905444833302">Ara</a>
+        </div>
+        <div class="phone">
+          <span class="num">0551 029 59 83</span>
+          <a class="btn btn-main mini" href="tel:+905510295983">Ara</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Çalışma saatleri</h3>
+        <p class="hours">08:00 – 18:00</p>
+        <p class="hint">Gelmeden önce aramanız iyi olur.</p>
+      </div>
+      <div class="card" style="grid-column: 1 / -1;">
+        <h3>Adres</h3>
+        <p class="addr">Küsget Sanayi Mahallesi, 60003 Nolu Cadde No: 116/B<br>Şehitkamil / Gaziantep</p>
+        <a class="btn btn-plain" id="harita" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Tamer%20Oto%20%C3%96n%20Muayene%20Fren%20Servisi%20K%C3%BCsget%20Sanayi%20Mahallesi%2060003%20Nolu%20Cadde%20116%2FB%20%C5%9Eehitkamil%20Gaziantep">Haritalar'da aç</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Tamer Oto Ön Muayene &amp; Fren Servisi · Küsget Sanayi, Şehitkamil / Gaziantep</div>
+</footer>
+
+<script>
+(function () {
+  var WA_NUMBER = "905444833302";
+  var form = document.getElementById("randevuForm");
+  var hata = document.getElementById("hata");
+  var sonuc = document.getElementById("sonuc");
+  var mesaj = document.getElementById("mesaj");
+  var wa = document.getElementById("wa");
+  var kopyala = document.getElementById("kopyala");
+  var kopyaNot = document.getElementById("kopyaNot");
+
+  function val(id) { return document.getElementById(id).value.trim(); }
+
+  function build() {
+    var lines = ["Merhaba, randevu almak istiyorum."];
+    if (val("ad")) lines.push("Ad: " + val("ad"));
+    if (val("tel")) lines.push("Telefon: " + val("tel"));
+    lines.push("Araç: " + val("marka") + " " + val("model"));
+    lines.push("İş: " + val("is"));
+    if (val("sikayet")) lines.push("Şikayet: " + val("sikayet"));
+    if (val("zaman")) lines.push("Uygun zaman: " + val("zaman"));
+    return lines.join("\n");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!val("marka") || !val("model")) {
+      hata.hidden = false;
+      (val("marka") ? document.getElementById("model") : document.getElementById("marka")).focus();
+      return;
+    }
+    hata.hidden = true;
+    var text = build();
+    mesaj.textContent = text;
+    wa.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
+    kopyaNot.hidden = true;
+    sonuc.hidden = false;
+    sonuc.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  kopyala.addEventListener("click", function () {
+    var text = mesaj.textContent;
+    function fallback() {
+      var r = document.createRange();
+      r.selectNodeContents(mesaj);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      kopyaNot.textContent = "Mesaj seçildi. Basılı tutup kopyala'yı seçin.";
+      kopyaNot.hidden = false;
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        kopyaNot.textContent = "Mesaj kopyalandı.";
+        kopyaNot.hidden = false;
+      }, fallback);
+    } catch (err) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
